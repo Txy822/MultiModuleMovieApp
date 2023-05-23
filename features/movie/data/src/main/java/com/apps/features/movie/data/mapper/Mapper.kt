@@ -10,4 +10,6 @@ fun MovieListResponse.toDomainMovieList(): List<Movie>{
     }
 }
 
-fun MovieDto.toMovieModel(): Movie = Movie(imgUrl = posterPath)
+fun MovieDto.toMovieModel(): Movie = Movie(imgUrl = makeFullUrl(posterPath))
+
+fun makeFullUrl(path:String) = "https://image.tmdb.org/t/p/w500/${path}"
