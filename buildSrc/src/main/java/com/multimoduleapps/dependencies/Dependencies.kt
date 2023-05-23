@@ -64,6 +64,7 @@ object Deps {
         const val fragment_ktx = "androidx.fragment:fragment-ktx:$androidx_fragment_ktx"
 
         const val safeargsplugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$safeargs"
+
     }
 
     object Kotlin {
@@ -262,5 +263,10 @@ object Deps {
 
     object Qubit{
         const val android = "com.qubit:qubit-sdk-android:2.0.2"
+    }
+    object Coil {
+        private const val coilVersion ="2.4.0"
+        const val coil = "io.coil-kt:coil-compose:$coilVersion"
+
     }
 }

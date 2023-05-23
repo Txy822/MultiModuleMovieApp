@@ -1,7 +1,6 @@
 package com.sample.apps.multimodulemovieapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -15,14 +14,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.apps.feature.movie.ui.viewmodel.MovieSearchViewModel
 import com.core.common.NavigationItem
-import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.sample.apps.multimodulemovieapp.navGraph.NavigationGraph
 import com.sample.apps.multimodulemovieapp.navGraph.PopBottomNavigation
 import com.sample.apps.multimodulemovieapp.ui.theme.MultiModuleMovieAppTheme
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -37,7 +36,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val navController = rememberNavController()
-
+                    BuildConfig.API_KEY
+                    val viewModel:MovieSearchViewModel = viewModel()
                     var isVisibleBT by remember {
                         mutableStateOf(true)
                     }
@@ -72,12 +72,14 @@ class MainActivity : ComponentActivity() {
                             val authToken = true
                             if (authToken) {
                                 NavigationGraph(
+                                    viewModel,
                                     navController,
                                     NavigationItem.HomeScreen.route
                                 )
                             } else {
                                 isVisibleBT = true
                                 NavigationGraph(
+                                    viewModel,
                                     navController,
                                     NavigationItem.FavoriteScreen.route)
                             }

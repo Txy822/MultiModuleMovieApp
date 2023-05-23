@@ -27,13 +27,7 @@ class MovieSearchViewModel @Inject constructor(
     val query: StateFlow<String> get() = _query
     // two ways to store apis
     //first by build config inside the build.gradle of specified module
-    //val apiKey1 = BuildConfig.API_KEY
-
-
-    //second using local.properties
-    private val properties = Properties()
-    val someVariable = properties.load(FileInputStream("local.properties"))
-    private val apiKey = properties.getProperty("api.key")
+    private val apiKey = BuildConfig.API_KEY
 
     init {
         viewModelScope.launch {
@@ -43,6 +37,9 @@ class MovieSearchViewModel @Inject constructor(
         }
     }
 
+    fun setQuery(q:String){
+        _query.value = q
+    }
     fun getMovieList(apiKey: String, q: String) = viewModelScope.launch {
         //        getMovieListUseCase.invoke(apiKey, q)
         getMovieListUseCase(apiKey, q).onEach {
