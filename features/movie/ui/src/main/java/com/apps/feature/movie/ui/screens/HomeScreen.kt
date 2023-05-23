@@ -69,6 +69,7 @@ fun HomeScreen(
                 CircularProgressIndicator()
             }
         }
+
         if (result.error.isNotBlank()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
