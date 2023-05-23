@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "MultiModuleMovieApp"
+include ':app'
+include ':features:movie:ui'
+include ':features:movie:data'
+include ':features:movie_details:data'
+include ':features:movie_details:domain'
+include ':features:movie_details:ui'
+include ':features:movie:domain'
+include ':core:network'
+include ':core:common'
+include ':core:feature_api'
