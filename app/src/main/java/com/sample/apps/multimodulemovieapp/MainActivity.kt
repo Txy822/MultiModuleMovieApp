@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
                                 )
                         ) {
                             // Add Splash Screen here
-                            val authToken = false
+                            val authToken = true
                             if (authToken) {
                                 NavigationGraph(
                                     navController,
