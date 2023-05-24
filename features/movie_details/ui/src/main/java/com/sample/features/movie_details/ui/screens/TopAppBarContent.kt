@@ -8,23 +8,24 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun TopAppBarContent(navController: NavController) {
+fun TopAppBar_(navController: NavController) {
     TopAppBar(
         title = {
             Text(
-                text = " Cat Fact Detail",
+                text = " Movie Details",
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
             )
         },
-        backgroundColor = MaterialTheme.colors.background,
+        backgroundColor = Color.LightGray,
         elevation = 4.dp,
         navigationIcon = {
             IconButton(onClick = {

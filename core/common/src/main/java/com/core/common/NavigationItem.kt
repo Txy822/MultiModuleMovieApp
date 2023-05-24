@@ -16,6 +16,16 @@ sealed class NavigationItem(
         title = "Favorites",
         icon = R.drawable.heart
     )
+    object SettingScreen : NavigationItem(
+        route = "setting_screen",
+        title = "Setting",
+        icon = R.drawable.setting
+    )
+    object ProfileScreen : NavigationItem(
+        route = "profile_screen",
+        title = "Profile",
+        icon = R.drawable.profile
+    )
     object DetailScreen : NavigationItem(
         route = "detail_screen",
         title = "Movie Details"

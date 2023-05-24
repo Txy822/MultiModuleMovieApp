@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     BuildConfig.API_KEY
-                    val viewModel:MovieSearchViewModel = viewModel()
+                    val viewModel: MovieSearchViewModel = viewModel()
                     var isVisibleBT by remember {
                         mutableStateOf(true)
                     }
@@ -47,8 +47,11 @@ class MainActivity : ComponentActivity() {
                                 PopBottomNavigation(
                                     navController = navController,
                                     items = listOf(
+                                        NavigationItem.HomeScreen,
                                         NavigationItem.FavoriteScreen,
-                                        NavigationItem.HomeScreen
+                                        NavigationItem.ProfileScreen,
+                                        NavigationItem.SettingScreen
+
                                     )
                                 )
                             }
@@ -81,7 +84,8 @@ class MainActivity : ComponentActivity() {
                                 NavigationGraph(
                                     viewModel,
                                     navController,
-                                    NavigationItem.FavoriteScreen.route)
+                                    NavigationItem.FavoriteScreen.route
+                                )
                             }
                         }
                     }
