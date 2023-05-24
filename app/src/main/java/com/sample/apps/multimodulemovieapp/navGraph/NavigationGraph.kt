@@ -40,7 +40,7 @@ fun NavigationGraph(
         composable(
             route = NavigationItem.FavoriteScreen.route
         ) {
-            SpacesScreen(navigateTo = {
+            FavoriteScreen(navigateTo = {
                 navController.navigate(it)
             })
         }

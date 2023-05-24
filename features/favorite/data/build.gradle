@@ -1,7 +1,10 @@
+import com.multimoduleapps.dependencies.Deps
+
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -32,6 +35,13 @@ android {
 }
 
 dependencies {
+
+    //add or import features or modules  usd for data module
+    implementation project(":features:favorite:domain")
+
+    //dagger hilt
+    implementation Deps.Hilt.hilt
+    kapt Deps.Hilt.compiler
     implementation "androidx.room:room-runtime:2.5.1"
     kapt "androidx.room:room-compiler:2.5.1"
 
