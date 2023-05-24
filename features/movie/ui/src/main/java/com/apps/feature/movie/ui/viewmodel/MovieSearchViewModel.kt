@@ -32,7 +32,7 @@ class MovieSearchViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _query.debounce(1000).collectLatest {
-                getMovieList(apiKey, it)
+                getMovieList(apiKey, it.ifEmpty { "harry" })
             }
         }
     }
@@ -40,7 +40,7 @@ class MovieSearchViewModel @Inject constructor(
     fun setQuery(q:String){
         _query.value = q
     }
-    fun getMovieList(apiKey: String, q: String) = viewModelScope.launch {
+    fun getMovieList(apiKey: String, q: String ) = viewModelScope.launch {
         //        getMovieListUseCase.invoke(apiKey, q)
         getMovieListUseCase(apiKey, q).onEach {
 //        getMovieListUseCase(apiKey, q).collect {

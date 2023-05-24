@@ -14,20 +14,10 @@ sealed class NavigationItem(
     object FavoriteScreen : NavigationItem(
         route = "favorite_screen",
         title = "Favorites",
-        icon = R.drawable.ic_home
+        icon = R.drawable.heart
     )
     object DetailScreen : NavigationItem(
         route = "detail_screen",
         title = "Movie Details"
     )
-
-
-    fun withArgs(vararg args : String) : String {
-        return buildString {
-            append(route)
-            args.forEach { arg ->
-                append("/$arg")
-            }
-        }
-    }
 }
