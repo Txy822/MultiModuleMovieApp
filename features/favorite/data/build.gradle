@@ -38,9 +38,11 @@ dependencies {
 
     //add or import features or modules  usd for data module
     implementation project(":features:favorite:domain")
+    implementation project(":core:common")
 
     //dagger hilt
     implementation Deps.Hilt.hilt
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.1'
     kapt Deps.Hilt.compiler
     implementation "androidx.room:room-runtime:2.5.1"
     kapt "androidx.room:room-compiler:2.5.1"

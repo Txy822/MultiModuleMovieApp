@@ -1,5 +1,7 @@
 package com.sample.features.favorite.data.repo
 
+import com.core.common.Resource
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpException
 import com.sample.features.favorite.data.local.FavoriteMovieDao
 import com.sample.features.favorite.data.local.FavoriteMovieEntity
 import com.sample.features.favorite.data.mapper.toFavoriteMovieEntity
@@ -8,19 +10,27 @@ import com.sample.features.favorite.domain.model.FavoriteMovieModel
 import com.sample.features.favorite.domain.repo.FavoriteMovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import java.io.IOException
 import javax.inject.Inject
 
 
 class FavoriteMovieRepositoryImpl @Inject constructor(
     private val movieDao: FavoriteMovieDao
-    ):FavoriteMovieRepository {
-    override suspend fun getFavoriteMovies(): Flow<List<FavoriteMovieModel>>
-    = flow {
+) : FavoriteMovieRepository {
+    override suspend fun getFavoriteMovies(): Flow<Resource<List<FavoriteMovieModel>>> = flow {
+        emit(Resource.Loading(true))
         try {
-            movieDao.getFavoriteMovies().map { it.toFavoriteMovieModel() }
-        }
-        catch (e: Exception){
-            emit(emptyList())
+            val result = movieDao.getFavoriteMovies().map { it.toFavoriteMovieModel() }
+            emit(Resource.Success(data = result))
+            emit(Resource.Loading(false))
+        } catch (e: IOException) {
+            e.printStackTrace()
+            emit(Resource.Error("Couldn't load data"))
+            emit(Resource.Loading(false))
+        } catch (e: HttpException) {
+            e.printStackTrace()
+            emit(Resource.Error("Couldn't load data"))
+            emit(Resource.Loading(false))
         }
     }
 
@@ -29,7 +39,7 @@ class FavoriteMovieRepositoryImpl @Inject constructor(
         movieDao.insertMovie(movie.toFavoriteMovieEntity())
     }
 
-   override suspend fun deleteMovie(movie: FavoriteMovieModel) {
+    override suspend fun deleteMovie(movie: FavoriteMovieModel) {
         movieDao.deleteMovie(movie.toFavoriteMovieEntity())
     }
 
