@@ -9,6 +9,7 @@ import com.sample.features.favorite.domain.use_case.GetFavoriteMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,8 +17,8 @@ import javax.inject.Inject
 class FavoriteMovieViewModel @Inject constructor(
     private val favoriteMovieUseCase: GetFavoriteMovieUseCase
 ) : ViewModel() {
-    private val _favoriteMovies = MutableStateFlow<List<FavoriteMovieModel>>(emptyList())
-    val favoriteMovies: StateFlow<List<FavoriteMovieModel>> = _favoriteMovies
+    private val _favoriteMovieStates = MutableStateFlow(FavoriteMovieSateHolder())
+    val favoriteMovieStates: StateFlow<FavoriteMovieSateHolder> = _favoriteMovieStates
 
     init {
 
@@ -28,11 +29,14 @@ class FavoriteMovieViewModel @Inject constructor(
             favoriteMovieUseCase.getFavoriteMovies().collect { result ->
                 when (result) {
                     is Resource.Success -> {
-                        _favoriteMovies.value = result.data!!
+                        _favoriteMovieStates.update { it.copy(favorites =result.data) }
                     }
-
-                    is Resource.Loading -> {}
-                    is Resource.Error -> {}
+                    is Resource.Loading -> {
+                        _favoriteMovieStates.update { it.copy(isLoading = true) }
+                    }
+                    is Resource.Error -> {
+                        _favoriteMovieStates.update { it.copy(error ="Error") }
+                    }
                 }
             }
         }
