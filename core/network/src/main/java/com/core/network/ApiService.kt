@@ -9,8 +9,8 @@ interface ApiService {
     //https://api.themoviedb.org/3/search/movie?api_key=api_key&query=harry
     @GET(END_POINT)
     suspend fun getMovieList(
-        @Query("api_key") apiKey: String,
-        @Query("query") q: String
+        @Query("api_key")apiKey: String,
+        @Query("query")q: String
     ): MovieListResponse
 
     companion object {

@@ -15,13 +15,15 @@ import retrofit2.create
 @Module
 object NetworkModule {
 
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(ApiService.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
     @Provides
     fun provideApiService(): ApiService {
-        return Retrofit.Builder()
-            .baseUrl(ApiService.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiService::class.java)
+        return retrofit.create(ApiService::class.java)
     }
     @Provides
     fun providesDataSource(apiService: ApiService): DataSource {
