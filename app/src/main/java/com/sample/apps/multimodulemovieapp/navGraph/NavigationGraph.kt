@@ -6,13 +6,14 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.apps.feature.movie.ui.screens.DetailScreen
 
 import com.core.common.NavigationItem
 //import com.google.accompanist.navigation.animation.composable
 import com.apps.feature.movie.ui.screens.HomeScreen
 import com.apps.feature.movie.ui.screens.SpacesScreen
 import com.apps.feature.movie.ui.viewmodel.MovieSearchViewModel
+import com.apps.features.movie.domain.model.Movie
+import com.sample.features.movie_details.ui.screens.DetailScreen
 
 @Composable
 fun NavigationGraph(
@@ -31,7 +32,9 @@ fun NavigationGraph(
             HomeScreen(viewModel = viewModel, navController)
         }
         composable(route= NavigationItem.DetailScreen.route ){
-            DetailScreen(navController)
+            val result = navController.previousBackStackEntry?.savedStateHandle?.get<Movie>("movie")
+
+            DetailScreen(navController, movie = result)
         }
 
         composable(

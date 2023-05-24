@@ -58,8 +58,10 @@ dependencies {
     implementation project(":core:common")
 
     implementation project(":features:movie:ui")
+    implementation project(":features:movie_details:ui")
     implementation project(":features:movie:domain")
     implementation project(":features:movie:data")
+
 
     implementation Deps.AndroidX.core_ktx
     //'androidx.core:core-ktx:1.7.0'

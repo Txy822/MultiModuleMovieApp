@@ -96,6 +96,7 @@ fun HomeScreen(
                                     .height(200.dp)
                                     .border(width = 2.dp, color = Color.White)
                                     .clickable {
+                                        navController.currentBackStackEntry?.savedStateHandle?.set(key="movie", value = movie)
                                         navController.navigate(route= NavigationItem.DetailScreen.route)
                                     }
                             ) {
