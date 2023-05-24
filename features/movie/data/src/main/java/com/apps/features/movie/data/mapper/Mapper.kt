@@ -14,6 +14,7 @@ fun MovieListResponse.toDomainMovieList(): List<Movie> {
 fun MovieDto.toMovieModel(): Movie =
     Movie(imgUrl = makeFullUrl(posterPath),
         adult = adult,
+        id = id,
         title = title,
         overview = overview,
         popularity = popularity,

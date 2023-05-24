@@ -15,9 +15,12 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/common" />
-            <option value="$PROJECT_DIR$/core/feature_api" />
             <option value="$PROJECT_DIR$/core/network" />
             <option value="$PROJECT_DIR$/features" />
+            <option value="$PROJECT_DIR$/features/favorite" />
+            <option value="$PROJECT_DIR$/features/favorite/data" />
+            <option value="$PROJECT_DIR$/features/favorite/domain" />
+            <option value="$PROJECT_DIR$/features/favorite/ui" />
             <option value="$PROJECT_DIR$/features/movie" />
             <option value="$PROJECT_DIR$/features/movie/data" />
             <option value="$PROJECT_DIR$/features/movie/domain" />
@@ -26,6 +29,8 @@
             <option value="$PROJECT_DIR$/features/movie_details/data" />
             <option value="$PROJECT_DIR$/features/movie_details/domain" />
             <option value="$PROJECT_DIR$/features/movie_details/ui" />
+            <option value="$PROJECT_DIR$/features/profile" />
+            <option value="$PROJECT_DIR$/features/setting" />
           </set>
         </option>
       </GradleProjectSettings>

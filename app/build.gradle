@@ -61,6 +61,9 @@ dependencies {
     implementation project(":features:movie_details:ui")
     implementation project(":features:movie:domain")
     implementation project(":features:movie:data")
+    implementation project(":features:favorite")
+    implementation project(":features:profile")
+    implementation project(":features:setting")
 
 
     implementation Deps.AndroidX.core_ktx

@@ -8,8 +8,8 @@ import androidx.navigation.compose.composable
 
 import com.core.common.NavigationItem
 import com.apps.feature.movie.ui.screens.HomeScreen
-import com.apps.feature.movie.ui.screens.ProfileScreen
-import com.apps.feature.movie.ui.screens.SettingsScreen
+import com.sample.features.profile.ui.screens.ProfileScreen
+import com.sample.features.setting.ui.screens.SettingsScreen
 import com.apps.feature.movie.ui.screens.SpacesScreen
 import com.apps.feature.movie.ui.viewmodel.MovieSearchViewModel
 import com.apps.features.movie.domain.model.Movie
@@ -45,10 +45,10 @@ fun NavigationGraph(
             })
         }
         composable(route= NavigationItem.SettingScreen.route){
-            SettingsScreen()
+           SettingsScreen()
         }
         composable(route = NavigationItem.ProfileScreen.route){
-            ProfileScreen()
+           ProfileScreen()
         }
     }
 }

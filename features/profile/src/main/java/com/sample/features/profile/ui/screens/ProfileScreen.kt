@@ -1,4 +1,4 @@
-package com.apps.feature.movie.ui.screens
+package com.sample.features.profile.ui.screens
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +20,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.sample.features.profile.data.getDummyUserProfile
 
 @Composable
 fun ProfileScreen() {
@@ -77,16 +78,3 @@ fun ProfileScreen() {
 }
 
 
-data class UserProfile(
-    val name: String,
-    val email: String,
-    val bio: String
-)
-
-fun getDummyUserProfile(): UserProfile {
-    return UserProfile(
-        name = "John Doe",
-        email = "johndoe@example.com",
-        bio = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac leo scelerisque, commodo est nec, semper mi."
-    )
-}
