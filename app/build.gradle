@@ -61,7 +61,9 @@ dependencies {
     implementation project(":features:movie_details:ui")
     implementation project(":features:movie:domain")
     implementation project(":features:movie:data")
-    implementation project(":features:favorite")
+    implementation project(":features:favorite:domain")
+    implementation project(":features:favorite:data")
+    implementation project(":features:favorite:ui")
     implementation project(":features:profile")
     implementation project(":features:setting")
 
