@@ -41,6 +41,8 @@ android {
 dependencies {
 
     implementation project(":core:common")
+//    implementation project(":features:movie_details:domain")
+    implementation project(":features:movie:domain")
     implementation Deps.Coil.coil
     implementation Deps.AndroidX.core_ktx
     //'androidx.core:core-ktx:1.7.0'

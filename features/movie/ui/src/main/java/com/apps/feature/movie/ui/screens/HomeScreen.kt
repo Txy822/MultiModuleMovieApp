@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.apps.feature.movie.ui.viewmodel.MovieSearchViewModel
+import com.apps.features.movie.domain.model.Movie
 import com.core.common.NavigationItem
 
 @Composable
@@ -90,7 +91,7 @@ fun HomeScreen(
                 LazyVerticalGrid(
                     columns = GridCells.Adaptive(minSize = 128.dp),
                     content = {
-                        items(movies) { movie ->
+                        items( movies) {movie ->
                             Box(
                                 modifier = Modifier
                                     .height(200.dp)
