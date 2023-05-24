@@ -41,6 +41,7 @@ fun HomeScreen(
 
     val result = viewModel.movieList.value
     val query = viewModel.query.collectAsState()
+  //  viewModel.setQuery("harry")
 
     Scaffold(topBar = {
         TextField(
@@ -48,7 +49,7 @@ fun HomeScreen(
             value = query.value,
             onValueChange = {
                 viewModel.setQuery(it)
-            },
+          },
             colors = TextFieldDefaults.textFieldColors(
                 disabledIndicatorColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent
@@ -111,14 +112,6 @@ fun HomeScreen(
                     }
                 )
             }
-        }
-    }
-
-    Column {
-        Box(
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = "Home Screen")
         }
     }
 }
