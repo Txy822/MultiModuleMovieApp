@@ -2,6 +2,7 @@ package com.apps.feature.movie.ui.screens
 
 import android.util.Log
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,13 +26,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.apps.feature.movie.ui.viewmodel.MovieSearchViewModel
+import com.core.common.NavigationItem
 
 @Composable
 fun HomeScreen(
 //    state: MovieStateHolder,
-    viewModel: MovieSearchViewModel
+    viewModel: MovieSearchViewModel,
+    navController: NavHostController
 ) {
 
     val result = viewModel.movieList.value
@@ -91,6 +95,9 @@ fun HomeScreen(
                                 modifier = Modifier
                                     .height(200.dp)
                                     .border(width = 2.dp, color = Color.White)
+                                    .clickable {
+                                        navController.navigate(route= NavigationItem.DetailScreen.route)
+                                    }
                             ) {
                                 AsyncImage(
                                     model = movie.imgUrl,

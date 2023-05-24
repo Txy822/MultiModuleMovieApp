@@ -3,10 +3,10 @@ package com.sample.apps.multimodulemovieapp.navGraph
 //import LoginScreen
 //import RegistrationScreen
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.apps.feature.movie.ui.screens.DetailScreen
 
 import com.core.common.NavigationItem
 //import com.google.accompanist.navigation.animation.composable
@@ -28,7 +28,10 @@ fun NavigationGraph(
             route = NavigationItem.HomeScreen.route
         ) {
            // val viewModel: MovieSearchViewModel = viewModel()
-            HomeScreen(viewModel = viewModel)
+            HomeScreen(viewModel = viewModel, navController)
+        }
+        composable(route= NavigationItem.DetailScreen.route ){
+            DetailScreen(navController)
         }
 
         composable(

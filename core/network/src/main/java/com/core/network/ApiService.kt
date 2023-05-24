@@ -2,6 +2,7 @@ package com.core.network
 
 import com.core.network.dto.MovieListResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -12,6 +13,13 @@ interface ApiService {
         @Query("api_key")apiKey: String,
         @Query("query")q: String
     ): MovieListResponse
+
+    @GET("movie/{id")
+    suspend fun getMovieDetails(
+        @Path("id") id:String,
+        @Query("api_key") apiKey:String
+    ){
+    }
 
     companion object {
         const val END_POINT = "3/search/movie"
