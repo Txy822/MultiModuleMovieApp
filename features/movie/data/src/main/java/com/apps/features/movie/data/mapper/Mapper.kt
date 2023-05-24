@@ -6,7 +6,7 @@ import com.core.network.dto.MovieListResponse
 
 fun MovieListResponse.toDomainMovieList(): List<Movie>{
     return  this.results.map {
-        Movie(it.posterPath)
+        Movie(makeFullUrl(it.posterPath))
     }
 }
 

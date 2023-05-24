@@ -14,7 +14,7 @@ interface ApiService {
     ): MovieListResponse
 
     companion object {
-        const val END_POINT = "3/search/movie?"
+        const val END_POINT = "3/search/movie"
         const val BASE_URL = "https://api.themoviedb.org/"
     }
 }
