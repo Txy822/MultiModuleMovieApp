@@ -92,23 +92,12 @@ fun HomeScreen(
                     columns = GridCells.Adaptive(minSize = 128.dp),
                     content = {
                         items( movies) {movie ->
-                            Box(
-                                modifier = Modifier
-                                    .height(200.dp)
-                                    .border(width = 2.dp, color = Color.White)
-                                    .clickable {
-                                        navController.currentBackStackEntry?.savedStateHandle?.set(
-                                            key = "movie",
-                                            value = movie
-                                        )
-                                        navController.navigate(route = NavigationItem.DetailScreen.route)
-                                    }
-                            ) {
-                                AsyncImage(
-                                    model = movie.imgUrl,
-                                    contentDescription = "img",
-                                    contentScale = ContentScale.Fit
+                            GridItem(movie){
+                                navController.currentBackStackEntry?.savedStateHandle?.set(
+                                    key = "movie",
+                                    value = movie
                                 )
+                                navController.navigate(route = NavigationItem.DetailScreen.route)
                             }
                         }
                     }
@@ -119,14 +108,32 @@ fun HomeScreen(
 }
 
 @Composable
+fun GridItem(movie: Movie, navigateToDetail:()-> Unit) {
+    Box(
+        modifier = Modifier
+            .height(200.dp)
+            .border(width = 2.dp, color = Color.White)
+            .clickable {
+                navigateToDetail()
+            }
+    ) {
+        AsyncImage(
+            model = movie.imgUrl,
+            contentDescription = "img",
+            contentScale = ContentScale.Fit
+        )
+    }
+
+}
+
+@Composable
 fun topAppBar(query: State<String>, viewModel: MovieSearchViewModel){
     TopAppBar(
         title= {
             TextField(
                 value = query.value,
                 onValueChange = { viewModel.setQuery(it)},
-                modifier = Modifier
-                    .fillMaxWidth(),
+                modifier = Modifier.padding(8.dp),
                 textStyle = TextStyle(color = Color.White),
                 leadingIcon = {
                     Icon(
@@ -137,7 +144,7 @@ fun topAppBar(query: State<String>, viewModel: MovieSearchViewModel){
                 },
                 placeholder = {
                     Text(
-                        text = "Search",
+                        text = "Search...",
                         color = Color.White.copy(alpha = 0.6f),
                         fontStyle = FontStyle.Italic
                     )
@@ -153,6 +160,6 @@ fun topAppBar(query: State<String>, viewModel: MovieSearchViewModel){
                 singleLine = true
             )
         },
-        backgroundColor = Color.Black,
+        backgroundColor = Color.Green,
     )
 }
