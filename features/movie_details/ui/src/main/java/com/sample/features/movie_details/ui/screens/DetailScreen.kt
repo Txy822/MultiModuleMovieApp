@@ -1,6 +1,7 @@
 package com.sample.features.movie_details.ui.screens
 
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,15 +18,24 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Card
+import androidx.compose.material.DropdownMenu
+import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -47,6 +57,7 @@ fun DetailScreen(
 ) {
 
     val movieImageUrl = "https://image.tmdb.org/t/p/w500/${movie?.imgUrl}"
+    var isFavorite by rememberSaveable { mutableStateOf(false) }
 
 
     Scaffold(
@@ -103,13 +114,23 @@ fun DetailScreen(
 
                             IconButton(
                                 onClick = {
-                                    favoriteViewModel.onEvent(FavoriteMovieEvent.AddFavorite(movie.toFavoriteMovieModel()))},
+                                    isFavorite = !isFavorite
+                                    if (isFavorite) {
+                                        favoriteViewModel.onEvent(FavoriteMovieEvent.AddFavorite(movie.toFavoriteMovieModel()))
+                                    }
+                                    else {
+                                        favoriteViewModel.onEvent(FavoriteMovieEvent.DeleteFavorite(movie.toFavoriteMovieModel()))
+
+                                    }},
+
                                 modifier = Modifier.padding(8.dp)
                             ) {
+                                val tintColor = if (isFavorite) Color.Red else Color.White
+
                                 Icon(
                                     imageVector = Icons.Default.Favorite,
                                     contentDescription = "Add",
-                                    tint = Color.Red
+                                    tint = tintColor
                                 )
                             }
                         }
