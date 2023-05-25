@@ -61,6 +61,8 @@ fun DetailScreen(
 
 
     Scaffold(
+        backgroundColor = MaterialTheme.colors.onBackground,
+
         topBar = { TopAppBar_(navController = navController) }) {
         Log.d("Tag", "Movie Details Screen:$it")
         if (movie == null) {
@@ -68,7 +70,7 @@ fun DetailScreen(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "No Data!")
+                Text(text = "No Data!", color = Color.White)
             }
         } else {
             Column(
@@ -97,17 +99,17 @@ fun DetailScreen(
 
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                     Column(modifier = Modifier.fillMaxWidth()) {
-                        Text(text = movie.title, style = MaterialTheme.typography.h5)
+                        Text(text = movie.title, style = MaterialTheme.typography.h5, color = Color.White)
 
                         Row() {
                             Column() {
                                 Text(
                                     text = "Popularity: " + movie.popularity.toString(),
-                                    style = MaterialTheme.typography.body1
+                                    style = MaterialTheme.typography.body1, color = Color.White
                                 )
                                 Text(
                                     text = "Vote Count: " + movie.voteCount.toString(),
-                                    style = MaterialTheme.typography.body1
+                                    style = MaterialTheme.typography.body1, color = Color.White
                                 )
                             }
                             Spacer(modifier = Modifier.weight(1f))
@@ -116,12 +118,20 @@ fun DetailScreen(
                                 onClick = {
                                     isFavorite = !isFavorite
                                     if (isFavorite) {
-                                        favoriteViewModel.onEvent(FavoriteMovieEvent.AddFavorite(movie.toFavoriteMovieModel()))
-                                    }
-                                    else {
-                                        favoriteViewModel.onEvent(FavoriteMovieEvent.DeleteFavorite(movie.toFavoriteMovieModel()))
+                                        favoriteViewModel.onEvent(
+                                            FavoriteMovieEvent.AddFavorite(
+                                                movie.toFavoriteMovieModel()
+                                            )
+                                        )
+                                    } else {
+                                        favoriteViewModel.onEvent(
+                                            FavoriteMovieEvent.DeleteFavorite(
+                                                movie.toFavoriteMovieModel()
+                                            )
+                                        )
 
-                                    }},
+                                    }
+                                },
 
                                 modifier = Modifier.padding(8.dp)
                             ) {
@@ -138,34 +148,8 @@ fun DetailScreen(
 
                         Text(
                             text = "Overview: " + movie.overview,
-                            style = MaterialTheme.typography.body1
+                            style = MaterialTheme.typography.body1, color = Color.White
                         )
-
-                        val isFavorite = false
-                        val buttonContent = if (isFavorite) {
-                            "Remove from Favorites"
-                        } else {
-                            "Add to Favorites"
-                        }
-
-                        Button(
-                            onClick = {
-                                if (isFavorite) {
-                                    favoriteViewModel.onEvent(
-                                        FavoriteMovieEvent.DeleteFavorite(
-                                            movie.toFavoriteMovieModel()
-                                        )
-                                    )
-                                } else {
-                                    favoriteViewModel.onEvent(FavoriteMovieEvent.AddFavorite(movie.toFavoriteMovieModel()))
-                                }
-                            },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 8.dp)
-                        ) {
-                            Text(text = buttonContent)
-                        }
 
                     }
                 }

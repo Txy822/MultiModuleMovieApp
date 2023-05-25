@@ -23,6 +23,7 @@ fun TopAppBar_(navController: NavController) {
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.body1
             )
         },
         backgroundColor = Color.LightGray,

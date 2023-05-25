@@ -41,12 +41,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.sample.features.favorite.domain.model.FavoriteMovieModel
 import com.sample.features.favorite.domain.model.toFavoriteMovieModel
+import com.sample.features.favorite.ui.R
 import com.sample.features.favorite.ui.viewmodel.FavoriteMovieEvent
 import com.sample.features.favorite.ui.viewmodel.FavoriteMovieViewModel
 
@@ -62,7 +64,8 @@ fun FavoriteScreen(viewModel: FavoriteMovieViewModel) {
     })
 
     Scaffold(
-        backgroundColor = MaterialTheme.colors.surface,
+     //   backgroundColor = MaterialTheme.colors.surface,
+
         topBar = { topAppBar()}) {
         Log.d("Tag", "Movie Details Screen:$it")
          if (favoriteMovieStates.error.isNotBlank()) {
@@ -72,7 +75,7 @@ fun FavoriteScreen(viewModel: FavoriteMovieViewModel) {
                      .padding(20.dp),
                  contentAlignment = Alignment.Center
              ) {
-                 Text(text = "Error , No Data")
+                 Text(text = "Error , No Data",color = Color.White)
              }
          } else if (favoriteMovieStates.favorites.isNullOrEmpty()) {
              Box(
@@ -81,7 +84,7 @@ fun FavoriteScreen(viewModel: FavoriteMovieViewModel) {
                      .padding(20.dp),
                  contentAlignment = Alignment.Center
              ) {
-                 Text(text = " No Data")
+                 Text(text = " No Data", color = Color.White)
              }
          } else if (!favoriteMovieStates.favorites.isNullOrEmpty()) {
 
@@ -136,17 +139,6 @@ fun MovieItem(modifier: Modifier, movie: FavoriteMovieModel, onRemoveClicked: ()
 
             Spacer(modifier = Modifier.weight(1f))
 
-            IconButton(
-                onClick = onRemoveClicked,
-                modifier = Modifier.padding(8.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Delete,
-                    contentDescription = "Remove",
-                    tint = Color.Red
-                )
-            }
-
             Box(modifier = Modifier.background(Color.LightGray)) {
                 IconButton(onClick = {displayMenu = !displayMenu }) {
                     Icon(Icons.Default.MoreVert, "")
@@ -178,12 +170,14 @@ fun topAppBar(){
         title = {
             Text(
                 text = " Favorite Movies",
+                color = Color.White,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.body1
             )
         },
-        backgroundColor = Color.LightGray,
+        backgroundColor = Color.Black,
         elevation = 4.dp,
     )
 }

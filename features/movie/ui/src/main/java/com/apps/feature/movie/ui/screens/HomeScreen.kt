@@ -12,20 +12,30 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -45,21 +55,7 @@ fun HomeScreen(
   //  viewModel.setQuery("harry")
 
     Scaffold(topBar = {
-        TextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = query.value,
-            onValueChange = {
-                viewModel.setQuery(it)
-          },
-            colors = TextFieldDefaults.textFieldColors(
-                disabledIndicatorColor = Color.Transparent,
-                focusedIndicatorColor = Color.Transparent
-            ),
-            placeholder = { Text(text = "Search Movie...") },
-            trailingIcon = {
-                Icon( imageVector =  Icons.Default.Search, contentDescription = "Search icon")
-            }
-        )
+     topAppBar(query =query, viewModel=viewModel)
     }) {
         //add this just to handle padding values
         Log.d("Tag", "Movie Screen: $it")
@@ -75,7 +71,9 @@ fun HomeScreen(
 
         if (result.error.isNotBlank()) {
             Box(
-                modifier = Modifier.fillMaxSize().padding(20.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Text(text = result.error)
@@ -99,8 +97,11 @@ fun HomeScreen(
                                     .height(200.dp)
                                     .border(width = 2.dp, color = Color.White)
                                     .clickable {
-                                        navController.currentBackStackEntry?.savedStateHandle?.set(key="movie", value = movie)
-                                        navController.navigate(route= NavigationItem.DetailScreen.route)
+                                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                                            key = "movie",
+                                            value = movie
+                                        )
+                                        navController.navigate(route = NavigationItem.DetailScreen.route)
                                     }
                             ) {
                                 AsyncImage(
@@ -115,4 +116,43 @@ fun HomeScreen(
             }
         }
     }
+}
+
+@Composable
+fun topAppBar(query: State<String>, viewModel: MovieSearchViewModel){
+    TopAppBar(
+        title= {
+            TextField(
+                value = query.value,
+                onValueChange = { viewModel.setQuery(it)},
+                modifier = Modifier
+                    .fillMaxWidth(),
+                textStyle = TextStyle(color = Color.White),
+                leadingIcon = {
+                    Icon(
+                        Icons.Default.Search,
+                        contentDescription = "Search",
+                        tint = Color.White
+                    )
+                },
+                placeholder = {
+                    Text(
+                        text = "Search",
+                        color = Color.White.copy(alpha = 0.6f),
+                        fontStyle = FontStyle.Italic
+                    )
+                },
+                shape = RoundedCornerShape(16.dp),
+                colors = TextFieldDefaults.textFieldColors(
+                    backgroundColor = Color.Gray,
+                    focusedIndicatorColor = Color.White,
+                    unfocusedIndicatorColor = Color.White,
+                    textColor = Color.White,
+                    placeholderColor = Color.White.copy(alpha = 0.6f)
+                ),
+                singleLine = true
+            )
+        },
+        backgroundColor = Color.Black,
+    )
 }
