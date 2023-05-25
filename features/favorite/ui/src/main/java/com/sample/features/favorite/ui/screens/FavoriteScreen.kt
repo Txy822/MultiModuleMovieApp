@@ -21,6 +21,7 @@ import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.SnackbarDefaults
 import androidx.compose.material.Text
@@ -61,6 +62,7 @@ fun FavoriteScreen(viewModel: FavoriteMovieViewModel) {
     })
 
     Scaffold(
+        backgroundColor = MaterialTheme.colors.surface,
         topBar = { topAppBar()}) {
         Log.d("Tag", "Movie Details Screen:$it")
          if (favoriteMovieStates.error.isNotBlank()) {
