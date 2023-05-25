@@ -21,6 +21,7 @@ import com.core.common.NavigationItem
 import com.sample.apps.multimodulemovieapp.navGraph.NavigationGraph
 import com.sample.apps.multimodulemovieapp.navGraph.PopBottomNavigation
 import com.sample.apps.multimodulemovieapp.ui.theme.MultiModuleMovieAppTheme
+import com.sample.features.favorite.ui.viewmodel.FavoriteMovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,7 +38,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     BuildConfig.API_KEY
-                    val viewModel: MovieSearchViewModel = viewModel()
+                    val movieViewModel: MovieSearchViewModel = viewModel()
+                    val favoriteViewModel: FavoriteMovieViewModel = viewModel()
                     var isVisibleBT by remember {
                         mutableStateOf(true)
                     }
@@ -75,16 +77,18 @@ class MainActivity : ComponentActivity() {
                             val authToken = true
                             if (authToken) {
                                 NavigationGraph(
-                                    viewModel,
-                                    navController,
-                                    NavigationItem.HomeScreen.route
+                                    movieViewModel = movieViewModel,
+                                    favoriteViewModel =favoriteViewModel,
+                                    navController = navController,
+                                    startLocation= NavigationItem.HomeScreen.route
                                 )
                             } else {
                                 isVisibleBT = true
                                 NavigationGraph(
-                                    viewModel,
-                                    navController,
-                                    NavigationItem.FavoriteScreen.route
+                                    movieViewModel = movieViewModel,
+                                    favoriteViewModel =favoriteViewModel,
+                                    navController = navController,
+                                    startLocation=NavigationItem.FavoriteScreen.route
                                 )
                             }
                         }

@@ -10,14 +10,16 @@ import com.core.common.NavigationItem
 import com.apps.feature.movie.ui.screens.HomeScreen
 import com.sample.features.profile.ui.screens.ProfileScreen
 import com.sample.features.setting.ui.screens.SettingsScreen
-import com.apps.feature.movie.ui.screens.SpacesScreen
 import com.apps.feature.movie.ui.viewmodel.MovieSearchViewModel
 import com.apps.features.movie.domain.model.Movie
+import com.sample.features.favorite.ui.screens.FavoriteScreen
+import com.sample.features.favorite.ui.viewmodel.FavoriteMovieViewModel
 import com.sample.features.movie_details.ui.screens.DetailScreen
 
 @Composable
 fun NavigationGraph(
-    viewModel: MovieSearchViewModel,
+    movieViewModel: MovieSearchViewModel,
+    favoriteViewModel: FavoriteMovieViewModel,
     navController: NavHostController,
     startLocation: String
 ) {
@@ -29,7 +31,7 @@ fun NavigationGraph(
             route = NavigationItem.HomeScreen.route
         ) {
            // val viewModel: MovieSearchViewModel = viewModel()
-            HomeScreen(viewModel = viewModel, navController)
+            HomeScreen(viewModel = movieViewModel, navController)
         }
         composable(route= NavigationItem.DetailScreen.route ){
             val result = navController.previousBackStackEntry?.savedStateHandle?.get<Movie>("movie")
@@ -40,9 +42,7 @@ fun NavigationGraph(
         composable(
             route = NavigationItem.FavoriteScreen.route
         ) {
-            FavoriteScreen(navigateTo = {
-                navController.navigate(it)
-            })
+            FavoriteScreen(favoriteViewModel)
         }
         composable(route= NavigationItem.SettingScreen.route){
            SettingsScreen()
