@@ -32,6 +32,8 @@ class FavoriteMovieRepositoryImpl @Inject constructor(
             emit(Resource.Error("Couldn't load data"))
             emit(Resource.Loading(false))
         }
+        emit(Resource.Loading(false))
+
     }
 
 

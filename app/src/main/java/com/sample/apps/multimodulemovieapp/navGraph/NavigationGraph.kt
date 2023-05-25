@@ -36,7 +36,7 @@ fun NavigationGraph(
         composable(route= NavigationItem.DetailScreen.route ){
             val result = navController.previousBackStackEntry?.savedStateHandle?.get<Movie>("movie")
 
-            DetailScreen(navController, movie = result)
+            DetailScreen(navController, movie = result, favoriteViewModel= favoriteViewModel)
         }
 
         composable(

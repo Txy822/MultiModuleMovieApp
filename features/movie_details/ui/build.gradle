@@ -42,6 +42,8 @@ dependencies {
 
     implementation project(":core:common")
     implementation project(":features:movie:domain")
+    implementation project(":features:favorite:domain")
+    implementation project(":features:favorite:ui")
     implementation Deps.Coil.coil
     implementation Deps.AndroidX.core_ktx
     //'androidx.core:core-ktx:1.7.0'

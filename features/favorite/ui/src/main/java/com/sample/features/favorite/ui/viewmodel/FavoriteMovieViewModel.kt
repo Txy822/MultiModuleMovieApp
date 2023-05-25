@@ -41,13 +41,13 @@ class FavoriteMovieViewModel @Inject constructor(
             favoriteMovieUseCase.getFavoriteMovies().collect { result ->
                 when (result) {
                     is Resource.Success -> {
-                        _favoriteMovieStates.update { it.copy(favorites =result.data) }
+                        _favoriteMovieStates.update { it.copy(favorites =result.data, isLoading = false) }
                     }
                     is Resource.Loading -> {
                         _favoriteMovieStates.update { it.copy(isLoading = true) }
                     }
                     is Resource.Error -> {
-                        _favoriteMovieStates.update { it.copy(error ="Error") }
+                        _favoriteMovieStates.update { it.copy(error ="Error", isLoading = false) }
                     }
                 }
             }

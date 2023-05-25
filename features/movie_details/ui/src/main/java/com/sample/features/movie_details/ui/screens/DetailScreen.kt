@@ -14,6 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -26,11 +27,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.apps.features.movie.domain.model.Movie
+import com.sample.features.favorite.domain.model.toFavoriteMovieModel
+import com.sample.features.favorite.ui.viewmodel.FavoriteMovieEvent
+import com.sample.features.favorite.ui.viewmodel.FavoriteMovieViewModel
 
-//import com.sample.features.movie_details.domain.Movie
 
 @Composable
-fun DetailScreen(navController: NavHostController, movie: Movie?) {
+fun DetailScreen(navController: NavHostController, movie: Movie?, favoriteViewModel: FavoriteMovieViewModel) {
 
     val movieImageUrl = "https://image.tmdb.org/t/p/w500/${movie?.imgUrl}"
 
@@ -73,6 +76,28 @@ fun DetailScreen(navController: NavHostController, movie: Movie?) {
                         Text(text = "Vote Count: "+movie.voteCount.toString(), style = MaterialTheme.typography.body1)
                         Text(text = "Overview: "+movie.overview, style = MaterialTheme.typography.body1)
 
+                        val isFavorite = false
+                        val buttonContent = if (isFavorite) {
+                            "Remove from Favorites"
+                        } else {
+                            "Add to Favorites"
+                        }
+
+                        Button(
+                            onClick = {
+                                if (isFavorite) {
+                                    favoriteViewModel.onEvent(FavoriteMovieEvent.DeleteFavorite(movie.toFavoriteMovieModel()))
+                                } else {
+                                    favoriteViewModel.onEvent(FavoriteMovieEvent.AddFavorite(movie.toFavoriteMovieModel()))
+                                }
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp)
+                        ) {
+                            Text(text = buttonContent)
+                        }
+
                     }
                 }
                 
@@ -82,28 +107,5 @@ fun DetailScreen(navController: NavHostController, movie: Movie?) {
 
     }
 
-/*
-    Column(modifier = Modifier.padding(10.dp)) {
-        TopAppBarContent(navController)
-        Spacer(modifier = Modifier.height(10.dp))
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            // contentAlignment = Alignment.Center
-        ) {
-            Text(text = movie?.title.toString())
-        }
-        Card(
-            Modifier
-                .fillMaxWidth(),
-            elevation = 0.dp,
-            shape = RoundedCornerShape(10.dp)
-        ) {
-            AsyncImage(
-                model = movieImageUrl,
-                contentDescription = "img",
-                contentScale = ContentScale.Crop
-            )
-        }
-    }
-    */
+
 }
