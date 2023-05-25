@@ -3,6 +3,7 @@ package com.sample.features.movie_details.ui.screens
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,12 +17,18 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -33,13 +40,17 @@ import com.sample.features.favorite.ui.viewmodel.FavoriteMovieViewModel
 
 
 @Composable
-fun DetailScreen(navController: NavHostController, movie: Movie?, favoriteViewModel: FavoriteMovieViewModel) {
+fun DetailScreen(
+    navController: NavHostController,
+    movie: Movie?,
+    favoriteViewModel: FavoriteMovieViewModel
+) {
 
     val movieImageUrl = "https://image.tmdb.org/t/p/w500/${movie?.imgUrl}"
 
 
     Scaffold(
-        topBar = {TopAppBar_(navController = navController)}) {
+        topBar = { TopAppBar_(navController = navController) }) {
         Log.d("Tag", "Movie Details Screen:$it")
         if (movie == null) {
             Box(
@@ -49,32 +60,65 @@ fun DetailScreen(navController: NavHostController, movie: Movie?, favoriteViewMo
                 Text(text = "No Data!")
             }
         } else {
-            Column(modifier = Modifier
-                .padding(10.dp)
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())) {
+            Column(
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
+            ) {
 
                 Card(
-                    Modifier.width(400.dp).height(400.dp),
+                    Modifier
+                        .width(400.dp)
+                        .height(400.dp),
                     elevation = 1.dp,
                     shape = RoundedCornerShape(20.dp)
                 ) {
 //                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
-                        AsyncImage(
-                            model = movieImageUrl,
-                            contentDescription = "img",
-                            contentScale = ContentScale.FillBounds,
-                        )
+                    AsyncImage(
+                        model = movieImageUrl,
+                        contentDescription = "img",
+                        contentScale = ContentScale.FillBounds,
+                    )
 //                    }
                 }
                 Spacer(modifier = Modifier.height(10.dp))
 
-                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
+                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Text(text = movie.title, style = MaterialTheme.typography.h5)
-                        Text(text = "Popularity: "+movie.popularity.toString(), style = MaterialTheme.typography.body1)
-                        Text(text = "Vote Count: "+movie.voteCount.toString(), style = MaterialTheme.typography.body1)
-                        Text(text = "Overview: "+movie.overview, style = MaterialTheme.typography.body1)
+
+                        Row() {
+                            Column() {
+                                Text(
+                                    text = "Popularity: " + movie.popularity.toString(),
+                                    style = MaterialTheme.typography.body1
+                                )
+                                Text(
+                                    text = "Vote Count: " + movie.voteCount.toString(),
+                                    style = MaterialTheme.typography.body1
+                                )
+                            }
+                            Spacer(modifier = Modifier.weight(1f))
+
+                            IconButton(
+                                onClick = {
+                                    favoriteViewModel.onEvent(FavoriteMovieEvent.AddFavorite(movie.toFavoriteMovieModel()))},
+                                modifier = Modifier.padding(8.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Favorite,
+                                    contentDescription = "Add",
+                                    tint = Color.Red
+                                )
+                            }
+                        }
+
+
+                        Text(
+                            text = "Overview: " + movie.overview,
+                            style = MaterialTheme.typography.body1
+                        )
 
                         val isFavorite = false
                         val buttonContent = if (isFavorite) {
@@ -86,7 +130,11 @@ fun DetailScreen(navController: NavHostController, movie: Movie?, favoriteViewMo
                         Button(
                             onClick = {
                                 if (isFavorite) {
-                                    favoriteViewModel.onEvent(FavoriteMovieEvent.DeleteFavorite(movie.toFavoriteMovieModel()))
+                                    favoriteViewModel.onEvent(
+                                        FavoriteMovieEvent.DeleteFavorite(
+                                            movie.toFavoriteMovieModel()
+                                        )
+                                    )
                                 } else {
                                     favoriteViewModel.onEvent(FavoriteMovieEvent.AddFavorite(movie.toFavoriteMovieModel()))
                                 }
@@ -100,7 +148,7 @@ fun DetailScreen(navController: NavHostController, movie: Movie?, favoriteViewMo
 
                     }
                 }
-                
+
             }
 
         }

@@ -5,6 +5,7 @@ import com.sample.features.favorite.domain.model.FavoriteMovieModel
 data class FavoriteMovieSateHolder(
     val isLoading:Boolean = false,
     val favorites: List<FavoriteMovieModel>? =null,
+    val favoriteMovie: FavoriteMovieModel? =null,
     val error :String = ""
 )
 

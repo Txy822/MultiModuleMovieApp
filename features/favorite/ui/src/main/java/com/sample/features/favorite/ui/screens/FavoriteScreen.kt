@@ -24,6 +24,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -43,6 +44,11 @@ fun FavoriteScreen(viewModel: FavoriteMovieViewModel) {
     val favoriteMovieStates by viewModel.favoriteMovieStates.collectAsState()
     val favorites = favoriteMovieStates.favorites
 
+    // Launch a coroutine bound to the scope of the composable
+    LaunchedEffect(key1 = viewModel, block = {
+        viewModel.onEvent(FavoriteMovieEvent.LoadFavorites)
+    })
+
     Scaffold(
         topBar = { topAppBar()}) {
         Log.d("Tag", "Movie Details Screen:$it")
@@ -55,7 +61,7 @@ fun FavoriteScreen(viewModel: FavoriteMovieViewModel) {
              ) {
                  Text(text = "Error , No Data")
              }
-         } else if (favoriteMovieStates.favorites!!.isEmpty()) {
+         } else if (favoriteMovieStates.favorites.isNullOrEmpty()) {
              Box(
                  modifier = Modifier
                      .fillMaxWidth()

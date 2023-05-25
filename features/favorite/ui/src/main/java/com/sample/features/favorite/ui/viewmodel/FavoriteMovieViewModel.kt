@@ -11,6 +11,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,19 +21,27 @@ class FavoriteMovieViewModel @Inject constructor(
     private val favoriteMovieUseCase: GetFavoriteMovieUseCase
 ) : ViewModel() {
     private val _favoriteMovieStates = MutableStateFlow(FavoriteMovieSateHolder())
-    val favoriteMovieStates: StateFlow<FavoriteMovieSateHolder> = _favoriteMovieStates
+    val favoriteMovieStates: StateFlow<FavoriteMovieSateHolder> = _favoriteMovieStates.asStateFlow()
 
     init {
-        getFavorites()
+      // getFavorites()
     }
     fun onEvent(event: FavoriteMovieEvent) {
         when (event) {
             is FavoriteMovieEvent.AddFavorite -> {
-                addMovieToFavorites( movie = event.movie)
+               _favoriteMovieStates.update { it.copy( favoriteMovie = event.movie) }
+                addMovieToFavorites()
+
+
             }
             is FavoriteMovieEvent.DeleteFavorite -> {
-                removeMovieFromFavorites(movie = event.movie)
+                _favoriteMovieStates.update { it.copy( favoriteMovie = event.movie) }
+                    removeMovieFromFavorites()
+
+
             }
+            is FavoriteMovieEvent.LoadFavorites->
+                getFavorites()
         }
     }
 
@@ -55,15 +64,17 @@ class FavoriteMovieViewModel @Inject constructor(
     }
 
 
-    private fun addMovieToFavorites(movie: FavoriteMovieModel) {
+    private fun addMovieToFavorites(movie: FavoriteMovieModel = _favoriteMovieStates.value.favoriteMovie!!) {
         viewModelScope.launch(Dispatchers.IO) {
             favoriteMovieUseCase.insertMovie(movie)
+            getFavorites()
         }
     }
 
-    private fun removeMovieFromFavorites(movie: FavoriteMovieModel) {
+    private fun removeMovieFromFavorites(movie: FavoriteMovieModel = _favoriteMovieStates.value.favoriteMovie!!) {
         viewModelScope.launch(Dispatchers.IO) {
             favoriteMovieUseCase.deleteMovie(movie)
+            getFavorites()
         }
     }
 }
