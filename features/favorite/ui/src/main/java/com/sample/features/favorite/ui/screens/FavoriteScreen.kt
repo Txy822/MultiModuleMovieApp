@@ -2,6 +2,7 @@ package com.sample.features.favorite.ui.screens
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -45,7 +46,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.core.common.NavigationItem
 import com.sample.features.favorite.domain.model.FavoriteMovieModel
 import com.sample.features.favorite.domain.model.toFavoriteMovieModel
 import com.sample.features.favorite.ui.R
@@ -53,7 +56,8 @@ import com.sample.features.favorite.ui.viewmodel.FavoriteMovieEvent
 import com.sample.features.favorite.ui.viewmodel.FavoriteMovieViewModel
 
 @Composable
-fun FavoriteScreen(viewModel: FavoriteMovieViewModel) {
+fun FavoriteScreen(viewModel: FavoriteMovieViewModel,   navController: NavHostController
+) {
     val favoriteMovieStates by viewModel.favoriteMovieStates.collectAsState()
     val favorites = favoriteMovieStates.favorites
 
@@ -65,7 +69,7 @@ fun FavoriteScreen(viewModel: FavoriteMovieViewModel) {
 
     Scaffold(
      //   backgroundColor = MaterialTheme.colors.surface,
-
+        backgroundColor = Color.Black,
         topBar = { topAppBar()}) {
         Log.d("Tag", "Movie Details Screen:$it")
          if (favoriteMovieStates.error.isNotBlank()) {
@@ -94,7 +98,14 @@ fun FavoriteScreen(viewModel: FavoriteMovieViewModel) {
                          modifier= Modifier,
                          movie = favorites[i],
                          onRemoveClicked =  {viewModel.onEvent(FavoriteMovieEvent.DeleteFavorite(favorites[i]))},
-                         onDetailClicked =  {viewModel.onEvent(FavoriteMovieEvent.AddFavorite(favorites[i]))})
+                         onDetailClicked =  {
+                             navController.currentBackStackEntry?.savedStateHandle?.set(
+                                 key = "favorite",
+                                 value = favorites[i]
+                             )
+                             navController.navigate(route = NavigationItem.FavoriteDetailScreen.route)
+                         }
+                     )
                  }
              }
          } else if (favoriteMovieStates.isLoading) {
@@ -126,7 +137,9 @@ fun MovieItem(modifier: Modifier, movie: FavoriteMovieModel, onRemoveClicked: ()
             Card(
                 Modifier
                     .width(250.dp)
-                    .height(150.dp),
+                    .height(150.dp).clickable {
+                                              onDetailClicked
+                    },
                 elevation = 1.dp,
                 shape = RoundedCornerShape(20.dp)
             ) {

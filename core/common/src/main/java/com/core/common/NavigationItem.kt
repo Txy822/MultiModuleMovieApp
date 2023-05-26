@@ -29,5 +29,8 @@ sealed class NavigationItem(
     object DetailScreen : NavigationItem(
         route = "detail_screen",
         title = "Movie Details"
+    )    object FavoriteDetailScreen : NavigationItem(
+        route = "favorite_detail_screen",
+        title = "Favorite Movie Details"
     )
 }

@@ -12,6 +12,8 @@ import com.sample.features.profile.ui.screens.ProfileScreen
 import com.sample.features.setting.ui.screens.SettingsScreen
 import com.apps.feature.movie.ui.viewmodel.MovieSearchViewModel
 import com.apps.features.movie.domain.model.Movie
+import com.sample.features.favorite.domain.model.FavoriteMovieModel
+import com.sample.features.favorite.ui.screens.FavoriteDetailScreen
 import com.sample.features.favorite.ui.screens.FavoriteScreen
 import com.sample.features.favorite.ui.viewmodel.FavoriteMovieViewModel
 import com.sample.features.movie_details.ui.screens.DetailScreen
@@ -38,11 +40,19 @@ fun NavigationGraph(
 
             DetailScreen(navController, movie = result, favoriteViewModel= favoriteViewModel)
         }
+        composable(route= NavigationItem.FavoriteDetailScreen.route ){
+            val result = navController.previousBackStackEntry?.savedStateHandle?.get<FavoriteMovieModel>("favorite")
+            FavoriteDetailScreen(
+                navController,
+                movie = result,
+                favoriteViewModel = favoriteViewModel
+            )
+        }
 
         composable(
             route = NavigationItem.FavoriteScreen.route
         ) {
-            FavoriteScreen(favoriteViewModel)
+            FavoriteScreen(favoriteViewModel, navController)
         }
         composable(route= NavigationItem.SettingScreen.route){
            SettingsScreen()
