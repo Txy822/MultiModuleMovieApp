@@ -47,6 +47,12 @@ dependencies {
     implementation Deps.Coil.coil
 
     implementation Deps.AndroidX.lifecycle_runtime
+    implementation Deps.AndroidX.core_ktx
+    implementation Deps.AndroidX.appcompat
+    //material icon
+    implementation Deps.AndroidX.material_icon
+    implementation Deps.AndroidX.material_icon_extended
+
     implementation Deps.Compose.composeActivity
     implementation  Deps.Compose.ui
     implementation Deps.Compose.uiToolingPreview
@@ -54,16 +60,9 @@ dependencies {
     implementation Deps.Compose.composeNavigation
     implementation Deps.Compose.hiltNavigation
 
-    implementation Deps.AndroidX.core_ktx
-    implementation Deps.AndroidX.appcompat
-    implementation Deps.Compose.material
     testImplementation Deps.Test.junit
     androidTestImplementation Deps.Test.junit_ext
     androidTestImplementation Deps.Test.espresso
-
-    //material icon
-    implementation Deps.AndroidX.material_icon
-    implementation Deps.AndroidX.material_icon_extended
 
     //dagger hilt
     implementation Deps.Hilt.hilt

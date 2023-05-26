@@ -2,8 +2,6 @@
 package com.multimoduleapps.dependencies
 object Versions {
     const val kotlin = Deps.Kotlin.kotlinVersion
-    const val detekt = Deps.DevTools.Detekt.version
-    const val jacoco = "0.8.7"
     const val koin = "3.1.5"
 }
 
@@ -11,61 +9,20 @@ object BuildCfg {
     const val compileSdk = 33
     const val minSdk = 23
     const val targetSdk = compileSdk
-    const val buildTools = "30.0.3"
 }
 object Deps {
     object AndroidX {
         private const val androidx_annotation = "1.1.0"
-        private const val androidx_recyclerview = "1.0.0"
         private const val androidx_appcompat = "1.2.0"
-        private const val androidx_cardview = "1.0.0"
         private const val androidx_core = "1.3.2"
-        private const val androidx_preference = "1.1.0"
-        private const val androidx_legacy = "1.0.0"
-        private const val androidx_constraintlayout = "2.0.4"
-        private const val androidx_multidex = "2.0.1"
-        private const val androidx_navigation = "2.3.4"
         private const val androidx_lifecycleVersion = "2.2.0"
-        private const val androidx_swiperefreshlayout = "1.0.0"
-        private const val androidx_test_runner = "1.4.0"
-        private const val androidx_test_rules = "1.4.0"
-        private const val androidx_test_ext = "1.1.3"
-        private const val androidx_test_expresso = "3.4.0"
-        private const val androidx_security_crypto = "1.0.0-rc03"
-        private const val androidx_viewpager2 = "1.0.0"
-        private const val androidx_lifecycle = "2.5.1"
-        private const val safeargs = "2.3.4"
-        private const val androidx_fragment_ktx = "1.5.5"
+
         const val annotation = "androidx.annotation:annotation:$androidx_annotation"
-        const val recyclerview = "androidx.recyclerview:recyclerview:$androidx_recyclerview"
         const val appcompat = "androidx.appcompat:appcompat:$androidx_appcompat"
-        const val cardview = "androidx.cardview:cardview:$androidx_cardview"
         const val core_ktx = "androidx.core:core-ktx:$androidx_core"
         const val material_icon ="androidx.compose.material:material-icons-core:1.4.3"
         const val material_icon_extended ="androidx.compose.material:material-icons-extended:1.4.3"
-        const val preference = "androidx.preference:preference:$androidx_preference"
-        const val preference_ktx = "androidx.preference:preference-ktx:$androidx_preference"
-        const val legacy_preference_v14 = "androidx.legacy:legacy-preference-v14:$androidx_legacy"
-        const val legacy_support_v4 = "androidx.legacy:legacy-support-v4:$androidx_legacy"
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:$androidx_constraintlayout"
-        const val multidex = "androidx.multidex:multidex:$androidx_multidex"
-        const val navigation_fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$androidx_navigation"
-        const val navigation_ui_ktx = "androidx.navigation:navigation-ui-ktx:$androidx_navigation"
-        const val lifecycle = "androidx.lifecycle:lifecycle-process:$androidx_lifecycleVersion"
-        const val lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:$androidx_lifecycleVersion"
         const val lifecycle_runtime ="androidx.lifecycle:lifecycle-runtime-ktx:$androidx_lifecycleVersion"
-        const val lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:$androidx_lifecycle"
-        const val lifecycle_viewmodel_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle"
-        const val security_crypto = "androidx.security:security-crypto:$androidx_security_crypto"
-        const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:$androidx_swiperefreshlayout"
-        const val viewpager2 = "androidx.viewpager2:viewpager2:$androidx_viewpager2"
-        const val test_runner = "androidx.test:runner:$androidx_test_runner"
-        const val test_ext = "androidx.test.ext:junit:$androidx_test_ext"
-        const val test_rules = "androidx.test:rules:$androidx_test_rules"
-        const val test_espresso = "androidx.test.espresso:espresso-core:$androidx_test_expresso"
-        const val fragment_ktx = "androidx.fragment:fragment-ktx:$androidx_fragment_ktx"
-
-        const val safeargsplugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$safeargs"
 
     }
     object Room {
@@ -98,6 +55,8 @@ object Deps {
 
         const val tinkVersion = "1.4.0"
         const val tink = "com.google.crypto.tink:tink-android" // no version included as it requires override in gradle.
+
+        const val googleAccompanist_sys = "com.google.accompanist:accompanist-systemuicontroller:0.20.0"
 
         object PlayServices {
             const val maps = "com.google.android.gms:play-services-maps:18.0.2"
@@ -246,8 +205,6 @@ object Deps {
         private const val composeVersion = "1.4.3"
         private const val nav_version = "2.5.0"
         private const val  hilt_nav_version = "1.0.0"
-        private const val googleAccompanistVersion ="0.31.2-alpha"
-
 
         const val runtime = "androidx.compose.runtime:runtime:$composeVersion"
         const val ui = "androidx.compose.ui:ui:$composeVersion"
@@ -262,7 +219,6 @@ object Deps {
         const val composeActivity = "androidx.activity:activity-compose:$compileVersionExtension"
         const val composeNavigation = "androidx.navigation:navigation-compose:$nav_version"
         const val hiltNavigation  = "androidx.hilt:hilt-navigation-compose:$hilt_nav_version"
-        const val googleAccompanist = "com.google.accompanist:accompanist-navigation-animation:$googleAccompanistVersion"
     }
 
     object Koin {

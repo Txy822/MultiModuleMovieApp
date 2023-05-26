@@ -43,7 +43,6 @@ dependencies {
     implementation Deps.Hilt.hilt
     kapt Deps.Hilt.compiler
 
-
     implementation Deps.AndroidX.core_ktx
     implementation Deps.AndroidX.appcompat
     implementation Deps.Compose.material
