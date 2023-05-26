@@ -49,35 +49,16 @@ object Deps {
     }
 
     object Google {
-        private const val materialVersion = "1.4.0"
-        const val android_material = "com.google.android.material:material:$materialVersion"
-        const val android_utils_maps = "com.google.maps.android:android-maps-utils:0.4.3"
+        private const val version = "0.20.0"
 
-        const val tinkVersion = "1.4.0"
-        const val tink = "com.google.crypto.tink:tink-android" // no version included as it requires override in gradle.
-
-        const val googleAccompanist_sys = "com.google.accompanist:accompanist-systemuicontroller:0.20.0"
+        const val googleAccompanist_sys = "com.google.accompanist:accompanist-systemuicontroller:${version}"
 
         object PlayServices {
-            const val maps = "com.google.android.gms:play-services-maps:18.0.2"
-            const val location = "com.google.android.gms:play-services-location:19.0.0"
-            const val analytics = "com.google.android.gms:play-services-analytics:18.0.1"
-            const val tagmanager = "com.google.android.gms:play-services-tagmanager:18.0.1"
-            const val gcm = "com.google.android.gms:play-services-gcm:17.0.0"
-            const val wallet = "com.google.android.gms:play-services-wallet:19.1.0"
         }
     }
 
     object Firebase {
-        const val config = "com.google.firebase:firebase-config:21.1.1"
-        const val config_ktx = "com.google.firebase:firebase-config-ktx:21.1.1"
-        const val analytics = "com.google.firebase:firebase-analytics:21.1.0"
         const val crashlytics = "com.google.firebase:firebase-crashlytics-buildtools:2.8.1"
-        const val analytics_ktx = "com.google.firebase:firebase-analytics-ktx:21.1.0"
-        const val messaging = "com.google.firebase:firebase-messaging:23.0.7"
-        const val performance_monitoring_sdk = "com.google.firebase:firebase-perf-ktx:20.1.0"
-        const val performance_monitoring_plugin = "com.google.firebase:perf-plugin:1.4.1"
-        const val iid = "com.google.firebase:firebase-iid:21.1.0"
     }
 
     object OkHttp3 {
@@ -96,67 +77,13 @@ object Deps {
         private const val version = "2.9.0"
         const val client = "com.squareup.retrofit2:retrofit:$version"
         const val converterGson = "com.squareup.retrofit2:converter-gson:$version"
-        const val rxjavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:$version"
     }
-
-    object Dagger {
-        private const val version = "2.20"
-        const val runtime = "com.google.dagger:dagger:$version"
-        const val compiler = "com.google.dagger:dagger-compiler:$version"
-        const val android_runtime = "com.google.dagger:dagger-android:$version"
-        const val android_runtime_support = "com.google.dagger:dagger-android-support:$version"
-        const val android_compiler = "com.google.dagger:dagger-android-processor:$version"
-    }
-
     object Hilt {
         private const val version ="2.44"
-
-
         const val hilt = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
 
 
-    }
-
-    object Stetho {
-        private const val version = "1.5.0"
-        const val runtime = "com.facebook.stetho:stetho:$version"
-        const val okhttp = "com.facebook.stetho:stetho-okhttp3:$version"
-    }
-
-    object Appcenter {
-        private const val appCenter = "1.0.0"
-        const val analytics = "com.microsoft.appcenter:appcenter-analytics:$appCenter"
-        const val crashes = "com.microsoft.appcenter:appcenter-crashes:$appCenter"
-    }
-
-    const val salesforce_marketingcloud = "com.salesforce.marketingcloud:marketingcloudsdk:8.0.6"
-
-    object Utils {
-        const val spoon = "com.squareup.spoon:spoon-client:1.7.0"
-        const val assertj = "com.squareup.assertj:assertj-android:1.1.1"
-
-        const val dotsindicator = "com.tbuonomo:dotsindicator:4.2"
-        const val javaxAnnotation = "javax.annotation:javax.annotation-api:1.2"
-        const val picasso = "com.squareup.picasso:picasso:2.5.2"
-        const val timber = "com.jakewharton.timber:timber:4.7.1"
-        const val rxBinding = "com.jakewharton.rxbinding2:rxbinding:2.0.0"
-        const val rxandroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
-        const val rxjava = "io.reactivex.rxjava2:rxjava:2.2.0"
-        const val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.3.0"
-        const val libphonenumber = "com.googlecode.libphonenumber:libphonenumber:8.8.2"
-        const val stickyheadersrecyclerview ="com.timehop.stickyheadersrecyclerview:library:0.4.3@aar"
-        const val qrcode = "com.google.zxing:core:3.3.3"
-        const val apptentive = "com.apptentive:apptentive-android:5.8.4"
-        const val install_referrer = "com.android.installreferrer:installreferrer:1.0"
-        const val materialSpinner = "com.github.ganfra:material-spinner:1.1.1"
-        const val securePreferences = "com.scottyab:secure-preferences-lib:0.1.7"
-        const val progressbar = "com.github.firdausmaulan:AVLoadingIndicatorView:2.3.0" // To be removed FRL-5903
-        const val crashlytics = "com.google.firebase:firebase-crashlytics:18.0.0"
-        const val gson = "com.google.code.gson:gson:2.8.5"
-        const val exif_interface = "androidx.exifinterface:exifinterface:1.3.3"
-        const val stringSanitiser = "com.futureplatforms:string-sanitiser:0.1.5"
-        const val stringSanitiserKapt = "com.futureplatforms:string-sanitiser-kapt:0.1.5"
     }
 
     object Test {
@@ -167,37 +94,8 @@ object Deps {
         const val ui_test_manifest ="androidx.compose.ui:ui-test-manifest:1.4.3"
         const val mockito_kotlin = "org.mockito.kotlin:mockito-kotlin:3.2.0"
         const val mockito = "org.mockito:mockito-core:3.10.0"
-        const val mockito_inline = "org.mockito:mockito-inline:3.10.0"
-        const val assertj = "org.assertj:assertj-core:3.2.0"
-        const val robolectric = "org.robolectric:robolectric:3.4.2"
-        const val robolectricMultidex = "org.robolectric:shadows-multidex:3.4-rc2"
-        const val json = "org.json:json:20140107"
-        const val dexmaker = "com.google.dexmaker:dexmaker:1.2"
-        const val dexmaker_mockito = "com.google.dexmaker:dexmaker-mockito:1.2"
-        const val threetenbp = "org.threeten:threetenbp:1.5.0"
 
-        object Kotest {
-            val assertions = "io.kotest:kotest-assertions-core:5.2.1"
-        }
     }
-
-    /**
-     * Specifically for libraries that do not tangibly impact the release app.
-     */
-    object DevTools {
-        object Detekt {
-            const val version = "1.19.0"
-            const val detektplugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$version"
-            const val detektformatting = "io.gitlab.arturbosch.detekt:detekt-formatting:$version"
-        }
-        const val jacocoVersion = "0.8.8"
-    }
-
-    const val dynatraceplugin = "com.dynatrace.tools.android:gradle-plugin:8.247.1.1003"
-    const val fp_recyclerview = "com.futureplatforms:view-recyclerview:0.1.3"
-    const val lottie = "com.airbnb.android:lottie:3.7.0"
-    const val lottieCompose = "com.airbnb.android:lottie-compose:6.0.0"
-    const val flexBox = "com.google.android.flexbox:flexbox:3.0.0"
 
     object Compose {
         const val compileVersion = "1.7.10"
@@ -221,13 +119,6 @@ object Deps {
         const val hiltNavigation  = "androidx.hilt:hilt-navigation-compose:$hilt_nav_version"
     }
 
-    object Koin {
-        const val android = "io.insert-koin:koin-android:${Versions.koin}"
-    }
-
-    object Qubit{
-        const val android = "com.qubit:qubit-sdk-android:2.0.2"
-    }
     object Coil {
         private const val coilVersion ="2.4.0"
         const val coil = "io.coil-kt:coil-compose:$coilVersion"
