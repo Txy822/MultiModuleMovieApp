@@ -52,7 +52,7 @@ fun FavoriteDetailScreen(
 
 
     Scaffold(
-        backgroundColor = MaterialTheme.colors.onBackground,
+        backgroundColor = Color.Black,
 
         topBar = { TopAppBar_(navController = navController) }) {
         Log.d("Tag", "Movie Details Screen:$it")

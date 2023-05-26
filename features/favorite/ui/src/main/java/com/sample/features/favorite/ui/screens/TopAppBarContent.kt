@@ -20,13 +20,14 @@ fun TopAppBar_(navController: NavController) {
         title = {
             Text(
                 text = " Movie Details",
+                color = Color.White,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.body1
+                style = MaterialTheme.typography.h5
             )
         },
-        backgroundColor = Color.LightGray,
+        backgroundColor = Color.Black,
         elevation = 4.dp,
         navigationIcon = {
             IconButton(onClick = {
@@ -35,6 +36,7 @@ fun TopAppBar_(navController: NavController) {
                 Icon(
                     Icons.Filled.ArrowBack,
                     contentDescription = "Go back",
+                    tint = Color.White
                 )
             }
         }

@@ -1,5 +1,6 @@
 package com.sample.features.setting.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,7 @@ import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 @Composable
@@ -26,11 +28,13 @@ fun SettingsScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color.Black)
             .padding(16.dp)
     ) {
         Text(
             text = "Settings",
             style = MaterialTheme.typography.h5,
+            color = Color.White,
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
@@ -39,19 +43,20 @@ fun SettingsScreen() {
             icon = Icons.Default.Notifications
         )
 
-        Divider(modifier = Modifier.padding(vertical = 8.dp))
+        Divider(modifier = Modifier.padding(vertical = 8.dp), color = Color.White)
 
         SettingItem(
             title = "Dark Mode",
             icon = Icons.Default.DarkMode
         )
 
-        Divider(modifier = Modifier.padding(vertical = 8.dp))
+        Divider(modifier = Modifier.padding(vertical = 8.dp), color = Color.White)
 
         SettingItem(
             title = "Language",
             icon = Icons.Default.Language
         )
+
     }
 }
 
@@ -64,7 +69,8 @@ fun SettingItem(title: String, icon: ImageVector) {
         Icon(
             imageVector = icon,
             contentDescription = "Setting Icon",
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(24.dp),
+            tint= Color.White
         )
 
         Spacer(modifier = Modifier.width(16.dp))
@@ -72,13 +78,15 @@ fun SettingItem(title: String, icon: ImageVector) {
         Text(
             text = title,
             style = MaterialTheme.typography.body1,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
+            color = Color.White
         )
 
         Icon(
             imageVector = Icons.Default.KeyboardArrowRight,
             contentDescription = "Arrow Icon",
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(24.dp),
+            tint =Color.White
         )
     }
 }
