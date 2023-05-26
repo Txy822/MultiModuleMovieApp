@@ -138,7 +138,7 @@ fun MovieItem(modifier: Modifier, movie: FavoriteMovieModel, onRemoveClicked: ()
                 Modifier
                     .width(250.dp)
                     .height(150.dp).clickable {
-                                              onDetailClicked
+                      onDetailClicked()
                     },
                 elevation = 1.dp,
                 shape = RoundedCornerShape(20.dp)
