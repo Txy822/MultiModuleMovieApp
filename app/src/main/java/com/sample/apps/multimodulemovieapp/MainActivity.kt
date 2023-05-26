@@ -28,7 +28,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -38,55 +37,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    val navController = rememberNavController()
-                    BuildConfig.API_KEY
-                    val movieViewModel: MovieSearchViewModel = viewModel()
-                    val favoriteViewModel: FavoriteMovieViewModel = viewModel()
-                    var isVisibleBT by remember {
-                        mutableStateOf(true)
-                    }
-                    val systemUiController = rememberSystemUiController()
-                    systemUiController.setStatusBarColor(Color.Black)
-                    Scaffold(
-                        bottomBar = {
-                            if (isVisibleBT) {
-                                PopBottomNavigation(
-                                    navController = navController,
-                                    items = listOf(
-                                        NavigationItem.HomeScreen,
-                                        NavigationItem.FavoriteScreen,
-                                        NavigationItem.ProfileScreen,
-                                        NavigationItem.SettingScreen
-
-                                    )
-                                )
-                            }
-                        }
-                    ) { innerPadding ->
-                        Column(
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(
-                                    PaddingValues(
-                                        0.dp,
-                                        0.dp,
-                                        0.dp,
-                                        innerPadding.calculateBottomPadding()
-                                    )
-                                )
-                        ) {
-                            // Add Splash Screen here
-
-                                NavigationGraph(
-                                    movieViewModel = movieViewModel,
-                                    favoriteViewModel =favoriteViewModel,
-                                    navController = navController,
-                                    startLocation= NavigationItem.HomeScreen.route
-                                )
-                        }
-                    }
+                    App()
                 }
             }
         }
@@ -94,14 +45,47 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
+fun App() {
+    val navController = rememberNavController()
+    val movieViewModel: MovieSearchViewModel = viewModel()
+    val favoriteViewModel: FavoriteMovieViewModel = viewModel()
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    MultiModuleMovieAppTheme {
-        Greeting("Android")
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(Color.Black)
+    Scaffold(
+        bottomBar = {
+            PopBottomNavigation(
+                navController = navController,
+                items = listOf(
+                    NavigationItem.HomeScreen,
+                    NavigationItem.FavoriteScreen,
+                    NavigationItem.ProfileScreen,
+                    NavigationItem.SettingScreen
+                )
+            )
+        }
+    ) { innerPadding ->
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(
+                    PaddingValues(
+                        0.dp,
+                        0.dp,
+                        0.dp,
+                        innerPadding.calculateBottomPadding()
+                    )
+                )
+        ) {
+            // Add Splash Screen here
+            NavigationGraph(
+                movieViewModel = movieViewModel,
+                favoriteViewModel = favoriteViewModel,
+                navController = navController,
+                startLocation = NavigationItem.HomeScreen.route
+            )
+        }
     }
 }

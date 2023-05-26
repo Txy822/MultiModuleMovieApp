@@ -45,6 +45,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -177,8 +178,8 @@ fun MovieItem(
                     },
             ) {
                 Column(modifier = Modifier.padding(8.dp)) {
-                    Text(text = movie.title, style= MaterialTheme.typography.h6, fontFamily = FontFamily.Serif)
-                    Text(text = movie.voteCount.toString())
+                    Text(text = movie.title, style= MaterialTheme.typography.h6, fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
+                    Text(text = movie.voteCount.toString(), fontWeight = FontWeight.Bold)
                 }
             }
 
