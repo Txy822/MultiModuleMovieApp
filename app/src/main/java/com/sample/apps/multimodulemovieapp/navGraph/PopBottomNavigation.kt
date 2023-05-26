@@ -38,7 +38,6 @@ fun PopBottomNavigation(navController : NavController, items : List<NavigationIt
                     icon = {
                         Icon(
                             painterResource(id = item.icon),
-                            //tint = Color.White,
                             contentDescription = item.title,
                             modifier = Modifier
                                 .width(30.dp)
@@ -46,7 +45,7 @@ fun PopBottomNavigation(navController : NavController, items : List<NavigationIt
                         )
                     },
                     selectedContentColor = Color.White,
-                    unselectedContentColor = Color.White.copy(0.4f),
+                    unselectedContentColor = Color.White.copy(0.6f),
                     alwaysShowLabel = true,
                     label =  { Text(text = item.title,
                         fontSize = 16.sp) },
@@ -54,14 +53,8 @@ fun PopBottomNavigation(navController : NavController, items : List<NavigationIt
                     onClick = {
                         navController.navigate(item.route)
                     },
-
-//                    selectedContentColor = Color.Black,
-//                    unselectedContentColor = Color.Black.copy(0.4f)
                 )
             }
-
         }
     }
-
-
 }

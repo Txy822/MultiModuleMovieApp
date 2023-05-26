@@ -32,33 +32,33 @@ fun NavigationGraph(
         composable(
             route = NavigationItem.HomeScreen.route
         ) {
-           // val viewModel: MovieSearchViewModel = viewModel()
+            // val viewModel: MovieSearchViewModel = viewModel()
             HomeScreen(viewModel = movieViewModel, navController)
         }
-        composable(route= NavigationItem.DetailScreen.route ){
+        composable(route = NavigationItem.DetailScreen.route) {
             val result = navController.previousBackStackEntry?.savedStateHandle?.get<Movie>("movie")
 
-            DetailScreen(navController, movie = result, favoriteViewModel= favoriteViewModel)
+            DetailScreen(navController, movie = result, favoriteViewModel = favoriteViewModel)
         }
-        composable(route= NavigationItem.FavoriteDetailScreen.route ){
-            val result = navController.previousBackStackEntry?.savedStateHandle?.get<FavoriteMovieModel>("favorite")
+        composable(route = NavigationItem.FavoriteDetailScreen.route) {
+            val result =
+                navController.previousBackStackEntry?.savedStateHandle?.get<FavoriteMovieModel>("favorite")
             FavoriteDetailScreen(
                 navController,
                 movie = result,
                 favoriteViewModel = favoriteViewModel
             )
         }
-
         composable(
             route = NavigationItem.FavoriteScreen.route
         ) {
             FavoriteScreen(favoriteViewModel, navController)
         }
-        composable(route= NavigationItem.SettingScreen.route){
-           SettingsScreen()
+        composable(route = NavigationItem.SettingScreen.route) {
+            SettingsScreen()
         }
-        composable(route = NavigationItem.ProfileScreen.route){
-           ProfileScreen()
+        composable(route = NavigationItem.ProfileScreen.route) {
+            ProfileScreen()
         }
     }
 }
