@@ -12,12 +12,14 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import com.apps.feature.movie.ui.viewmodel.MovieSearchViewModel
 import com.core.common.NavigationItem
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.sample.apps.multimodulemovieapp.navGraph.NavigationGraph
 import com.sample.apps.multimodulemovieapp.navGraph.PopBottomNavigation
 import com.sample.apps.multimodulemovieapp.ui.theme.MultiModuleMovieAppTheme
@@ -43,6 +45,8 @@ class MainActivity : ComponentActivity() {
                     var isVisibleBT by remember {
                         mutableStateOf(true)
                     }
+                    val systemUiController = rememberSystemUiController()
+                    systemUiController.setStatusBarColor(Color.Black)
                     Scaffold(
                         bottomBar = {
                             if (isVisibleBT) {
@@ -74,23 +78,13 @@ class MainActivity : ComponentActivity() {
                                 )
                         ) {
                             // Add Splash Screen here
-                            val authToken = true
-                            if (authToken) {
+
                                 NavigationGraph(
                                     movieViewModel = movieViewModel,
                                     favoriteViewModel =favoriteViewModel,
                                     navController = navController,
                                     startLocation= NavigationItem.HomeScreen.route
                                 )
-                            } else {
-                                isVisibleBT = true
-                                NavigationGraph(
-                                    movieViewModel = movieViewModel,
-                                    favoriteViewModel =favoriteViewModel,
-                                    navController = navController,
-                                    startLocation=NavigationItem.FavoriteScreen.route
-                                )
-                            }
                         }
                     }
                 }

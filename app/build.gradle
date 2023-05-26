@@ -99,5 +99,6 @@ dependencies {
     //dagger hilt
     implementation Deps.Hilt.hilt
     kapt Deps.Hilt.compiler
+    implementation 'com.google.accompanist:accompanist-systemuicontroller:0.20.0'
 
 }
