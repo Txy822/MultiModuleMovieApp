@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.sample.features.favorite.domain.model.FavoriteMovieModel
-import com.sample.features.favorite.domain.model.toFavoriteMovieModel
 import com.sample.features.favorite.ui.viewmodel.FavoriteMovieEvent
 import com.sample.features.favorite.ui.viewmodel.FavoriteMovieViewModel
 

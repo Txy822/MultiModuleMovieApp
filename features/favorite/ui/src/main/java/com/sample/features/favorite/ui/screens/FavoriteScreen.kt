@@ -194,7 +194,7 @@ fun MovieItem(
                 DropdownMenu(
                     expanded = displayMenu,
                     onDismissRequest = { displayMenu = false },
-                    modifier = Modifier.background(colorResource(id = androidx.constraintlayout.widget.R.color.abc_background_cache_hint_selector_material_dark))
+                    modifier = Modifier.background(colorResource(id = androidx.appcompat.R.color.abc_background_cache_hint_selector_material_dark))
                 ) {
                     DropdownMenuItem(onClick = {
                         onRemoveClicked()

@@ -35,9 +35,12 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation Deps.AndroidX.core_ktx
+    implementation Deps.AndroidX.appcompat
+    implementation Deps.Compose.material
+    testImplementation Deps.Test.junit
+    androidTestImplementation Deps.Test.junit_ext
+    androidTestImplementation Deps.Test.espresso
 
     //retrofit
     implementation Deps.Retrofit.client
@@ -54,10 +57,4 @@ dependencies {
     //dagger hilt
     implementation Deps.Hilt.hilt
     kapt Deps.Hilt.compiler
-
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-
 }

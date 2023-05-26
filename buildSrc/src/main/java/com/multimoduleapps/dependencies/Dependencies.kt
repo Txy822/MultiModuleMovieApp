@@ -41,6 +41,8 @@ object Deps {
         const val appcompat = "androidx.appcompat:appcompat:$androidx_appcompat"
         const val cardview = "androidx.cardview:cardview:$androidx_cardview"
         const val core_ktx = "androidx.core:core-ktx:$androidx_core"
+        const val material_icon ="androidx.compose.material:material-icons-core:1.4.3"
+        const val material_icon_extended ="androidx.compose.material:material-icons-extended:1.4.3"
         const val preference = "androidx.preference:preference:$androidx_preference"
         const val preference_ktx = "androidx.preference:preference-ktx:$androidx_preference"
         const val legacy_preference_v14 = "androidx.legacy:legacy-preference-v14:$androidx_legacy"
@@ -65,6 +67,11 @@ object Deps {
 
         const val safeargsplugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$safeargs"
 
+    }
+    object Room {
+        const val runtime = "androidx.room:room-runtime:2.5.1"
+        const val compiler = "androidx.room:room-compiler:2.5.1"
+        const val ktx ="androidx.room:room-ktx:2.5.1"
     }
 
     object Kotlin {
@@ -106,6 +113,7 @@ object Deps {
         const val config = "com.google.firebase:firebase-config:21.1.1"
         const val config_ktx = "com.google.firebase:firebase-config-ktx:21.1.1"
         const val analytics = "com.google.firebase:firebase-analytics:21.1.0"
+        const val crashlytics = "com.google.firebase:firebase-crashlytics-buildtools:2.8.1"
         const val analytics_ktx = "com.google.firebase:firebase-analytics-ktx:21.1.0"
         const val messaging = "com.google.firebase:firebase-messaging:23.0.7"
         const val performance_monitoring_sdk = "com.google.firebase:firebase-perf-ktx:20.1.0"

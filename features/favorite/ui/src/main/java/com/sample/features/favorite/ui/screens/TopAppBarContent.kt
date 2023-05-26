@@ -19,7 +19,7 @@ fun TopAppBar_(navController: NavController) {
     TopAppBar(
         title = {
             Text(
-                text = " Movie Details",
+                text = " Favorite Movie Details",
                 color = Color.White,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
