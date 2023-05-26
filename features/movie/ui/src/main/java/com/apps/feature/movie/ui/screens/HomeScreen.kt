@@ -55,14 +55,6 @@ fun HomeScreen(
             Box(modifier = Modifier.fillMaxWidth().background(Color.Black)){
                 SearchField(query = query, viewModel = viewModel)
             }
-            if (result.isLoading) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator()
-                }
-            }
 
             if (result.error.isNotBlank()) {
                 Box(
@@ -98,6 +90,14 @@ fun HomeScreen(
                             }
                         }
                     )
+                }
+            }
+            if (result.isLoading) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
                 }
             }
         }

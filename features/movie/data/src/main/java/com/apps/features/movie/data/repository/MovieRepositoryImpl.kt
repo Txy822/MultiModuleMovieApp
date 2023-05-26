@@ -8,9 +8,8 @@ import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val dataSource: DataSource
-): MovieRepository {
+) : MovieRepository {
     override suspend fun getMovieList(apikey: String, q: String): List<Movie> {
-        return  dataSource.getMovieList(apikey, q).results.map { it.toMovieModel() }
-//        return  dataSource.getMovieList(apikey, q).toDomainMovieList()
+        return dataSource.getMovieList(apikey, q).results.map { it.toMovieModel() }
     }
 }

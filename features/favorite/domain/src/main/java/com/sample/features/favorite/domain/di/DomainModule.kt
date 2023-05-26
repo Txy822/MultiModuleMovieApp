@@ -10,7 +10,6 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 object DomainModule {
-
     @Provides
     fun providesMovieListUseCase(movieRepository: FavoriteMovieRepository): GetFavoriteMovieUseCase {
         return GetFavoriteMovieUseCase(movieRepository)

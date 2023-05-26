@@ -65,7 +65,6 @@ fun FavoriteScreen(
     val favoriteMovieStates by viewModel.favoriteMovieStates.collectAsState()
     val favorites = favoriteMovieStates.favorites
 
-
     // Launch a coroutine bound to the scope of the composable
     LaunchedEffect(key1 = viewModel, block = {
         viewModel.onEvent(FavoriteMovieEvent.LoadFavorites)
@@ -127,7 +126,6 @@ fun FavoriteScreen(
     }
 }
 
-
 @Composable
 fun MovieItem(
     modifier: Modifier,
@@ -182,9 +180,6 @@ fun MovieItem(
                     Text(text = movie.voteCount.toString(), fontWeight = FontWeight.Bold)
                 }
             }
-
-
-
             Spacer(modifier = Modifier.weight(1f))
 
             Box(modifier = Modifier.background(Color.LightGray)) {

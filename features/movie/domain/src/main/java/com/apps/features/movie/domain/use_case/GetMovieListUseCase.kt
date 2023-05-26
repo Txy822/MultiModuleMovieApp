@@ -13,10 +13,8 @@ class GetMovieListUseCase @Inject constructor(
     private val movieRepository: MovieRepository
 ) {
     operator fun invoke(apiKey: String, q: String) = flow<Resource<List<Movie>>> {
-       // emit(Resource.Loading(true))
-        emit(Resource.Success(movieRepository.getMovieList(apiKey,q)))
+        emit(Resource.Success(movieRepository.getMovieList(apiKey, q)))
     }.catch {
-     //   emit(Resource.Loading(false))
         emit(Resource.Error(it.message.toString()))
     }.flowOn(Dispatchers.IO)
 }

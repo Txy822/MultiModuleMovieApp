@@ -1,11 +1,9 @@
 package com.sample.features.favorite.ui.viewmodel
 
-import androidx.compose.ui.modifier.modifierLocalMapOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.core.common.Resource
 import com.sample.features.favorite.domain.model.FavoriteMovieModel
-import com.sample.features.favorite.domain.repo.FavoriteMovieRepository
 import com.sample.features.favorite.domain.use_case.GetFavoriteMovieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,9 +21,6 @@ class FavoriteMovieViewModel @Inject constructor(
     private val _favoriteMovieStates = MutableStateFlow(FavoriteMovieSateHolder())
     val favoriteMovieStates: StateFlow<FavoriteMovieSateHolder> = _favoriteMovieStates.asStateFlow()
 
-    init {
-      // getFavorites()
-    }
     fun onEvent(event: FavoriteMovieEvent) {
         when (event) {
             is FavoriteMovieEvent.AddFavorite -> {

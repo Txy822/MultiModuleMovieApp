@@ -38,7 +38,6 @@ import com.sample.features.favorite.domain.model.FavoriteMovieModel
 import com.sample.features.favorite.ui.viewmodel.FavoriteMovieEvent
 import com.sample.features.favorite.ui.viewmodel.FavoriteMovieViewModel
 
-
 @Composable
 fun FavoriteDetailScreen(
     navController: NavHostController,
@@ -49,10 +48,8 @@ fun FavoriteDetailScreen(
     val movieImageUrl = "https://image.tmdb.org/t/p/w500/${movie?.imgUrl}"
     var isFavorite by rememberSaveable { mutableStateOf(false) }
 
-
     Scaffold(
         backgroundColor = Color.Black,
-
         topBar = { TopAppBar_(navController = navController) }) {
         Log.d("Tag", "Movie Details Screen:$it")
         if (movie == null) {
@@ -77,20 +74,16 @@ fun FavoriteDetailScreen(
                     elevation = 1.dp,
                     shape = RoundedCornerShape(20.dp)
                 ) {
-//                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center){
                     AsyncImage(
                         model = movieImageUrl,
                         contentDescription = "img",
                         contentScale = ContentScale.FillBounds,
                     )
-//                    }
                 }
                 Spacer(modifier = Modifier.height(10.dp))
-
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Text(text = movie.title, style = MaterialTheme.typography.h5, color = Color.White)
-
                         Row() {
                             Column() {
                                 Text(
@@ -126,7 +119,6 @@ fun FavoriteDetailScreen(
                                 modifier = Modifier.padding(8.dp)
                             ) {
                                 val tintColor = if (isFavorite) Color.Red else Color.White
-
                                 Icon(
                                     imageVector = Icons.Default.Favorite,
                                     contentDescription = "Add",
