@@ -86,6 +86,7 @@ fun HomeScreen(
                     }
                 } else {
                     LazyVerticalGrid(
+                        modifier= Modifier.background(Color.Black),
                         columns = GridCells.Adaptive(minSize = 128.dp),
                         content = {
                             items(movies) { movie ->

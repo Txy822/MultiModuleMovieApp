@@ -118,10 +118,8 @@ object Deps {
         const val composeNavigation = "androidx.navigation:navigation-compose:$nav_version"
         const val hiltNavigation  = "androidx.hilt:hilt-navigation-compose:$hilt_nav_version"
     }
-
     object Coil {
         private const val coilVersion ="2.4.0"
         const val coil = "io.coil-kt:coil-compose:$coilVersion"
-
     }
 }
