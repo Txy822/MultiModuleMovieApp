@@ -44,8 +44,7 @@ fun HomeScreen(
     viewModel: MovieSearchViewModel,
     navController: NavHostController
 ) {
-
-    val result = viewModel.movieList.value
+    val result = viewModel.movieSate.value
     val query by viewModel.query.collectAsState()
     Scaffold(topBar = {}
     ) {
@@ -56,7 +55,6 @@ fun HomeScreen(
             Box(modifier = Modifier.fillMaxWidth().background(Color.Black)){
                 SearchField(query = query, viewModel = viewModel)
             }
-
             if (result.isLoading) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -134,7 +132,6 @@ fun SearchField(query: String, viewModel: MovieSearchViewModel) {
             focusedBorderColor = Color.Blue,
             unfocusedBorderColor = Color.White,
             textColor = Color.White,
-
             placeholderColor = Color.White.copy(alpha = 0.6f)
         ),
         singleLine = true,
@@ -167,6 +164,5 @@ fun GridItem(movie: Movie, navigateToDetail: () -> Unit) {
             contentScale = ContentScale.Fit
         )
     }
-
 }
 

@@ -79,7 +79,6 @@ fun App() {
                     )
                 )
         ) {
-            // Add Splash Screen here
             NavigationGraph(
                 movieViewModel = movieViewModel,
                 favoriteViewModel = favoriteViewModel,
