@@ -5,17 +5,13 @@ It displays Mdb movies in different layout using compose, compose navigation, MV
 
 #Sample UI
 
-<img src="img/img_1.png" width="400">
-<img src="img/img_2.png" width="400">
-<img src="img/img_3.png" width="400">
-
-
 <div style="display: flex; justify-content: center;">
   <img src="img/img1.png" alt="Screenshot 1" style="width: 33%;" />
   <img src="img/img2.png" alt="Screenshot 2" style="width: 33%;" />
   <img src="img/img3.png" alt="Screenshot 3" style="width: 33%;" />
   <img src="img/img4.png" alt="Screenshot 4" style="width: 33%;" />
   <img src="img/img5.png" alt="Screenshot 5" style="width: 33%;" />
+  <img src="img/img6.png" alt="Screenshot 6" style="width: 33%;" />
 </div>
 
 
