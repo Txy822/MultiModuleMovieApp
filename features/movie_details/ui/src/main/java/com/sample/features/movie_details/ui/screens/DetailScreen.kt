@@ -1,5 +1,6 @@
 package com.sample.features.movie_details.ui.screens
 
+import android.content.Intent
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -40,6 +41,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -63,7 +65,7 @@ fun DetailScreen(
     Scaffold(
         backgroundColor = MaterialTheme.colors.onBackground,
 
-        topBar = { TopAppBar_(navController = navController) }) {
+        topBar = { TopAppBar_(navController = navController, onShareClick = {  }) }) {
         Log.d("Tag", "Movie Details Screen:$it")
         if (movie == null) {
             Box(
@@ -159,6 +161,15 @@ fun DetailScreen(
         }
 
     }
+}
 
-
+@Composable
+fun ShareContent() {
+    val context = LocalContext.current
+    val sharingIntent = Intent(Intent.ACTION_SEND).apply {
+        type = "text/plain"
+        putExtra(Intent.EXTRA_TEXT, "Shared content")
+    }
+    val shareIntent = Intent.createChooser(sharingIntent, "Share via")
+    context.startActivity(shareIntent)
 }
