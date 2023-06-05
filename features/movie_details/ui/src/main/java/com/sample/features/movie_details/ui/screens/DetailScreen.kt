@@ -65,7 +65,7 @@ fun DetailScreen(
     Scaffold(
         backgroundColor = MaterialTheme.colors.onBackground,
 
-        topBar = { TopAppBar_(navController = navController, onShareClick = {  }) }) {
+        topBar = { TopAppBar_(navController = navController) }) {
         Log.d("Tag", "Movie Details Screen:$it")
         if (movie == null) {
             Box(

@@ -1,6 +1,7 @@
 package com.sample.features.movie_details.ui.screens
 
 import android.content.Intent
+import android.widget.Toast
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
@@ -20,7 +21,8 @@ import androidx.navigation.NavController
 import com.fetures.movie_details.ui.R
 
 @Composable
-fun TopAppBar_(navController: NavController, onShareClick: () -> Unit) {
+fun TopAppBar_(navController: NavController) {
+    val contextForToast = LocalContext.current.applicationContext
     TopAppBar(
         title = {
             Text(
@@ -34,9 +36,13 @@ fun TopAppBar_(navController: NavController, onShareClick: () -> Unit) {
         },
         actions = {
             IconButton(
-                onClick = { onShareClick }
+                onClick = {
+                    Toast.makeText(contextForToast, "No data to share", Toast.LENGTH_LONG).show()
+                }
+
             ) {
-                Icon(Icons.Filled.Share, "share icon",                     tint = Color.White
+                Icon(
+                    Icons.Filled.Share, "share icon", tint = Color.White
                 )
             }
         },
